@@ -1,0 +1,40 @@
+{
+  "name": "doc-template-skills",
+  "version": "0.1.0",
+  "description": "Document skills driven by your own templates. pptx-brand registers a PowerPoint brand template once (theme colors, fonts, slide-master layouts, icon catalog), builds every deck from the template's real layouts, and fails QA on off-brand colors, fonts, images, or layouts.",
+  "author": {
+    "name": "Wade Cooper",
+    "url": "https://github.com/wtcooper"
+  },
+  "homepage": "https://github.com/wtcooper/productivity-tools/tree/main/plugins/doc-template-skills",
+  "repository": "https://github.com/wtcooper/productivity-tools",
+  "license": "MIT",
+  "keywords": [
+    "powerpoint",
+    "pptx",
+    "potx",
+    "presentation",
+    "slides",
+    "brand",
+    "template",
+    "documents"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Document Template Skills",
+    "shortDescription": "On-brand PowerPoint decks from your own template",
+    "longDescription": "Registers a PowerPoint brand template once, extracting theme colors, fonts, slide-master layouts, and an icon catalog, then builds decks from the template's real layouts and runs brand, asset, layout, and file QA.",
+    "developerName": "Wade Cooper",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/wtcooper/productivity-tools",
+    "defaultPrompt": [
+      "Register this PowerPoint template as our brand template",
+      "Build an on-brand leadership deck from these notes",
+      "Check this deck for off-brand colors and fonts"
+    ]
+  }
+}

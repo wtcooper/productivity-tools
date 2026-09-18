@@ -1,0 +1,20 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Manifests and catalogs are consistent
+        run: python3 scripts/build_marketplaces.py --check
+      - name: pptx-brand end-to-end (no LibreOffice)
+        run: |
+          pip install python-pptx Pillow lxml defusedxml
+          python3 tests/pptx_brand/run_e2e.py
