@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "doc-template-skills",
+  "version": "0.1.0",
+  "description": "Document skills driven by your own templates. pptx-brand registers a PowerPoint brand template once (theme colors, fonts, slide-master layouts, icon catalog), builds every deck from the template's real layouts, and fails QA on off-brand colors, fonts, images, or layouts.",
+  "author": {
+    "name": "Wade Cooper",
+    "url": "https://github.com/wtcooper"
+  },
+  "homepage": "https://github.com/wtcooper/productivity-tools/tree/main/plugins/doc-template-skills",
+  "repository": "https://github.com/wtcooper/productivity-tools",
+  "license": "MIT",
+  "keywords": [
+    "powerpoint",
+    "pptx",
+    "potx",
+    "presentation",
+    "slides",
+    "brand",
+    "template",
+    "documents"
+  ],
+  "extensions": {
+    "com.anthropic.claude": {
+      "category": "productivity"
+    },
+    "com.openai.codex": {
+      "category": "Productivity"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "productivity-tools",
+  "interface": {
+    "displayName": "Productivity Tools"
+  },
+  "plugins": [
+    {
+      "name": "doc-template-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/doc-template-skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
