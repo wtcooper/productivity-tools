@@ -13,6 +13,7 @@ installs with each vendor's native marketplace command.
 | Plugin | What it does |
 | --- | --- |
 | [`doc-template-skills`](plugins/doc-template-skills/) | Document skills driven by your own templates. `pptx-brand` registers a PowerPoint brand template once (theme colors, fonts, slide-master layouts, icon catalog), builds decks from the template's real layouts, and fails QA on anything off-brand. Ships `template-onboarder`, `deck-builder`, and `visual-qa` subagents. |
+| [`agent-chronicle`](plugins/agent-chronicle/) | The story of how your coding agents built a project. `chronicle` joins the [agentsview](https://github.com/kenn-io/agentsview) session index with git to produce a storyboard with a Present mode, a leadership brief, and an evidence-linked audit of intent, backtracks, and what shipped. `dev-coach` scores how you frame, plan, verify, and steer agent work, quoting your own prompts. Ships `session-digester`, `story-editor`, and `practice-coach` subagents. |
 
 ## Install
 

@@ -1,0 +1,44 @@
+{
+  "name": "agent-chronicle",
+  "version": "0.1.0",
+  "description": "Turns your AI coding-agent sessions into the story of how a project was built. chronicle joins the agentsview session index with git to produce a presentable storyboard, a leadership brief, and an evidence-linked audit of intent, plans, backtracks, and what shipped; dev-coach scores how you direct your agents and shows better prompts.",
+  "author": {
+    "name": "Wade Cooper",
+    "url": "https://github.com/wtcooper"
+  },
+  "homepage": "https://github.com/wtcooper/productivity-tools/tree/main/plugins/agent-chronicle",
+  "repository": "https://github.com/wtcooper/productivity-tools",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "sessions",
+    "agentsview",
+    "claude-code",
+    "codex",
+    "history",
+    "timeline",
+    "storyboard",
+    "audit",
+    "coaching",
+    "prompting",
+    "git"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Chronicle",
+    "shortDescription": "The story of how your agents built a project, and how to direct them better",
+    "longDescription": "Joins every agent session indexed by agentsview with git history to reconstruct a project's original intent, chapters, backtracks, and what shipped, as a storyboard, a leadership brief, and an evidence-linked audit. A coach scores how you framed, planned, verified, and steered the work, quoting your own prompts.",
+    "developerName": "Wade Cooper",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/wtcooper/productivity-tools",
+    "defaultPrompt": [
+      "Tell the story of how this project was built",
+      "Audit the agent sessions behind this repo",
+      "Coach me on how I direct coding agents in this project"
+    ]
+  }
+}

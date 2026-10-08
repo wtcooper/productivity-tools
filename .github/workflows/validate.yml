@@ -18,3 +18,5 @@ jobs:
         run: |
           pip install python-pptx Pillow lxml defusedxml
           python3 tests/pptx_brand/run_e2e.py
+      - name: agent-chronicle end-to-end (fake agentsview, no model)
+        run: python3 tests/agent_chronicle/run_e2e.py

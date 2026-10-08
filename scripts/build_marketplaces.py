@@ -20,7 +20,7 @@ PLUGINS_DIR = ROOT / "plugins"
 
 MARKETPLACE_NAME = "productivity-tools"
 DISPLAY_NAME = "Productivity Tools"
-DESCRIPTION = "Skills, agents, and hooks for everyday productivity work: documents, presentations, and templates driven by your own assets."
+DESCRIPTION = "Skills, agents, and hooks for everyday productivity work: documents, presentations, and templates driven by your own assets, and the story of how your coding agents built a project."
 OWNER = {"name": "Wade Cooper", "url": "https://github.com/wtcooper"}
 REPO_URL = "https://github.com/wtcooper/productivity-tools"
 

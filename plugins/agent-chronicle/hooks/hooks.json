@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v agentsview >/dev/null 2>&1 && nohup sh -c 'agentsview sync && python3 \"${CLAUDE_PLUGIN_ROOT}/skills/chronicle/scripts/archive.py\" --quiet' >/dev/null 2>&1 & exit 0",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

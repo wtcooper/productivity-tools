@@ -5,10 +5,37 @@
     "url": "https://github.com/wtcooper"
   },
   "metadata": {
-    "description": "Skills, agents, and hooks for everyday productivity work: documents, presentations, and templates driven by your own assets.",
+    "description": "Skills, agents, and hooks for everyday productivity work: documents, presentations, and templates driven by your own assets, and the story of how your coding agents built a project.",
     "version": "1.0.0"
   },
   "plugins": [
+    {
+      "name": "agent-chronicle",
+      "description": "Turns your AI coding-agent sessions into the story of how a project was built. chronicle joins the agentsview session index with git to produce a presentable storyboard, a leadership brief, and an evidence-linked audit of intent, plans, backtracks, and what shipped; dev-coach scores how you direct your agents and shows better prompts.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Wade Cooper",
+        "url": "https://github.com/wtcooper"
+      },
+      "homepage": "https://github.com/wtcooper/productivity-tools/tree/main/plugins/agent-chronicle",
+      "repository": "https://github.com/wtcooper/productivity-tools",
+      "license": "MIT",
+      "keywords": [
+        "agents",
+        "sessions",
+        "agentsview",
+        "claude-code",
+        "codex",
+        "history",
+        "timeline",
+        "storyboard",
+        "audit",
+        "coaching",
+        "prompting",
+        "git"
+      ],
+      "source": "./plugins/agent-chronicle"
+    },
     {
       "name": "doc-template-skills",
       "description": "Document skills driven by your own templates. pptx-brand registers a PowerPoint brand template once (theme colors, fonts, slide-master layouts, icon catalog), builds every deck from the template's real layouts, and fails QA on off-brand colors, fonts, images, or layouts.",

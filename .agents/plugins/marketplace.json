@@ -5,6 +5,18 @@
   },
   "plugins": [
     {
+      "name": "agent-chronicle",
+      "source": {
+        "source": "local",
+        "path": "./plugins/agent-chronicle"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "doc-template-skills",
       "source": {
         "source": "local",
