@@ -175,7 +175,15 @@ def normalize(msgs, short):
                            "model": m.get("model") or ""})
         for t in m.get("tool_calls") or []:
             events += [{**base, **e} for e in tool_events(t)]
-    return events
+    # Compaction re-writes the preserved recent messages after the boundary with their original timestamps,
+    # and agentsview stores both copies. Keep the first.
+    seen, unique = set(), []
+    for e in events:
+        key = (e["ts"], e["kind"], e.get("tool"), e.get("text") or e.get("target"), e.get("added"), e.get("removed"))
+        if key not in seen:
+            seen.add(key)
+            unique.append(e)
+    return unique
 
 
 # ---------------------------------------------------------------- project + linking

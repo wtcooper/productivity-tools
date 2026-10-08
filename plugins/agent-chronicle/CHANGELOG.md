@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1 — 2026-10-08
+
+- Incremental updates: digest parts are cached by their event lines, not the header, so a growing session
+  only re-digests its new or still-growing parts.
+- Messages that compaction replays with their original timestamps (stored twice by agentsview) are counted once.
+- The story-editor revises an existing `story.json` instead of rewriting it, keeping chapter and episode ids.
+
 ## 0.1.0 — 2026-10-07
 
 - Initial release. `chronicle` skill: agentsview + git extraction (worktree merging, subagent folding,

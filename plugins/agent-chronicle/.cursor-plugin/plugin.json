@@ -1,6 +1,6 @@
 {
   "name": "agent-chronicle",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turns your AI coding-agent sessions into the story of how a project was built. chronicle joins the agentsview session index with git to produce a presentable storyboard, a leadership brief, and an evidence-linked audit of intent, plans, backtracks, and what shipped; dev-coach scores how you direct your agents and shows better prompts.",
   "author": {
     "name": "Wade Cooper"

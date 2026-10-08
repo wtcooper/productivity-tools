@@ -56,8 +56,8 @@ commits linked, digests pending, and the estimated input tokens for the map step
 
 ## Step 2: Map — session cards
 
-`work/<project>/pending.json` lists digests without an up-to-date card (cards are cached by digest hash,
-so a re-run only processes new or changed sessions).
+`work/<project>/pending.json` lists digests without an up-to-date card. Cards are cached by the hash of each
+part's event lines, so a re-run only processes new sessions and the new or still-growing tail of long ones.
 
 - If the pending estimate is over ~1M tokens, tell the user and offer `--since` or a smaller scope before continuing.
 - Split pending digests into batches of up to ~60k tokens or ~15 digests (pending.json has each digest's
@@ -74,7 +74,7 @@ Then run `check_evidence.py cards`. Send failing cards back to `session-digester
 
 Run `bundle.py`, then the `story-editor` agent with the project path, work dir, this skill's directory, and
 the audience emphasis if the user gave one. It writes `work/<project>/story.json` and loops on
-`check_evidence.py story` until OK. Without subagents, follow `agents/story-editor.md` yourself.
+`check_evidence.py story` until OK. On an update it revises the existing `story.json` rather than starting over. Without subagents, follow `agents/story-editor.md` yourself.
 
 ## Step 4: Render
 

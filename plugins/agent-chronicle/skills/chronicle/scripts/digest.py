@@ -12,6 +12,7 @@ from datetime import datetime
 from _common import clip, clip_middle, parse_ts
 
 BUDGET_CHARS = 48_000          # ~12k tokens per digest file
+HEADER_END = "\n---\n\n"
 PROMPTS_BUDGET_CHARS = 120_000  # ~30k tokens for prompts.md
 
 
@@ -125,13 +126,19 @@ def chunk(lines, budget):
     return chunks
 
 
+def body_sha(text):
+    """Cache key for a digest part: its event lines only. The header carries session-wide context (title,
+    totals, part count) that changes as a session grows; hashing it would re-digest every earlier part."""
+    return hashlib.sha256(text.split(HEADER_END, 1)[-1].encode()).hexdigest()[:16]
+
+
 def header(s, sig, part, parts):
     start, end = parse_ts(s["started"]), parse_ts(s["ended"])
     span = f"{start:%Y-%m-%d %H:%M} → {end:%H:%M}" if start.date() == end.date() else f"{start:%Y-%m-%d %H:%M} → {end:%Y-%m-%d %H:%M}"
     return (f"# Session {s['short']} — {s['title']}\n"
             f"agent {s['agent']} · branch {s['branch'] or '-'} · {span} UTC · {sig['human_prompts']} human prompts · "
             f"health {sig['health'] or '-'} · compactions {sig['compactions']} · subagent sessions {s['children']}\n"
-            f"part {part}/{parts}. Evidence ids are in [brackets]; cite them exactly.\n\n")
+            f"part {part}/{parts}. Evidence ids are in [brackets]; cite them exactly." + HEADER_END)
 
 
 def write_digests(wd, manifest, events_by_session, roots, sig):
@@ -154,7 +161,7 @@ def write_digests(wd, manifest, events_by_session, roots, sig):
             text = header(s, sig["sessions"][s["short"]], i, len(parts)) + "\n".join(lines) + "\n"
             (ddir / f"{name}.md").write_text(text)
             index.append({"name": name, "session": s["short"], "part": i, "parts": len(parts),
-                          "sha": hashlib.sha256(text.encode()).hexdigest()[:16], "tokens": len(text) // 4})
+                          "sha": body_sha(text), "tokens": len(text) // 4})
     return index
 
 

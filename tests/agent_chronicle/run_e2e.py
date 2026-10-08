@@ -142,6 +142,10 @@ def build_fixture(tmp):
             msg(14, "2026-09-10T10:24:00Z", "assistant", "[Bash: clean]",
                 [tool("Bash", "Bash", {"command": "rm -rf /tmp/scratch && rm -rf build"}, "")]),
             msg(15, "2026-09-10T10:25:00Z", "assistant", "[Bash: wipe]", [tool("Bash", "Bash", {"command": "rm -rf src"}, "")]),
+            # compaction replays preserved messages with their original timestamps
+            msg(16, "2026-09-10T10:06:00Z", "user", "still broken, the test imports the wrong module"),
+            msg(17, "2026-09-10T10:10:00Z", "assistant", "[Bash: run tests]\n$ uv run pytest -q",
+                [tool("Bash", "Bash", {"command": "uv run pytest -q"}, "1 passed")]),
         ],
         "eeeeeeee-0000": [msg(0, "2026-09-12T08:00:00Z", "user", REVIEW)],
         **{f"ffffffff-000{i}": [msg(0, f"2026-09-12T0{i}:00:00Z", "user", REVIEW),
@@ -224,6 +228,7 @@ def main():
         s1 = sig["sessions"]["aaaaaaaa"]
         check(s1["plan_before_code"] and s1["tests_run"] == 2 and s1["tests_failed"] == 1, "plan-first and test signals")
         check(s1["interrupts"] == 1 and s1["corrections"] == 1, "interrupt (agentsview 'interrupted' subtype) and correction counted")
+        check("aaaaaaaa:16" not in kinds and "aaaaaaaa:17" not in kinds, "messages replayed by compaction are counted once")
         check(s1["slash_commands"] == ["/review", "/model"], "tagged and plain-text slash commands captured")
         check(s1["destructive_commands"] == 1, "rm -rf of scratch/build is housekeeping; rm -rf src is destructive")
         check({"ffffffff", "ffff0002", "ffff0003"} <= set(sig["sessions"]), "colliding 8-char ids are disambiguated")
@@ -255,6 +260,12 @@ def main():
         check(run(SCRIPTS / "check_evidence.py", "cards", *proj).returncode == 0, "valid cards pass the gate")
         run(SCRIPTS / "extract.py", *proj, "--no-sync")
         check(json.loads((wd / "pending.json").read_text())["digests"] == [], "re-run reuses cached cards")
+        fx = json.loads(fixture.read_text())
+        fx["sessions"][0]["display_name"] = "Greeting app, retitled as the session grew"
+        fixture.write_text(json.dumps(fx))
+        run(SCRIPTS / "extract.py", *proj, "--no-sync")
+        check(json.loads((wd / "pending.json").read_text())["digests"] == [],
+              "a header-only change (new title) keeps the cached cards")
         run(SCRIPTS / "bundle.py", *proj)
         check("goal: Goal [aaaaaaaa:0]" in (wd / "bundle.md").read_text(), "bundle includes cards with evidence")
 

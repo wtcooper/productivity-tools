@@ -14,7 +14,6 @@ Exit 1 with one line per problem. Contracts: references/story-schema.md, ../dev-
 """
 
 import argparse
-import hashlib
 import re
 import sys
 from collections import defaultdict
@@ -23,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from _common import load_work, read_json, read_ndjson, redact  # noqa: E402
+from digest import body_sha  # noqa: E402
 
 OUTCOMES = {"shipped", "partial", "abandoned", "reverted", "exploration"}
 BACKTRACKS = {"reverted", "re-planned", "abandoned", "thrashed", "scope-change"}
@@ -192,7 +192,7 @@ def main():
         for s in manifest["sessions"]:
             for name in s.get("digests", []):
                 card = read_json(wd / "cards" / f"{name}.json")
-                sha = hashlib.sha256((wd / "digests" / f"{name}.md").read_bytes()).hexdigest()[:16]
+                sha = body_sha((wd / "digests" / f"{name}.md").read_text())
                 if card is None or card.get("digest_sha") != sha:
                     pending.append(name)
                 else:

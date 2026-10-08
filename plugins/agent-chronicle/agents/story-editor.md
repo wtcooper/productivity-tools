@@ -12,9 +12,10 @@ Inputs you receive: the project path, the work dir, and the audience emphasis if
 Procedure:
 1. Read `references/story-schema.md`, then `<work dir>/bundle.md` completely. Read individual digests in `<work dir>/digests/` only to resolve a specific doubt, such as the original intent or why a pivot happened.
 2. Find the origin in the first sessions: the problem, the intent, any constraints and success criteria the user stated, and the initial plan.
-3. Group cards into episodes (one goal pursued across sessions) and episodes into chapters (phases bounded by a goal shift or a long gap). Every episode goes in exactly one chapter.
-4. Pull pivots from card backtracks and from cross-session patterns the cards cannot see: a goal that silently disappeared, work redone in a later session, reverted commits, commits that never reached the default branch.
-5. Write `<work dir>/story.json`, then run `uv run scripts/check_evidence.py story --project <project>`. Fix every problem and re-run until it prints OK.
+3. If `<work dir>/story.json` already exists, this is an update: start from it. Keep the chapters, episodes, and pivots that still hold, extend them with the new sessions, and revise only where new cards change the picture (a later pivot, a goal that moved, work that got reverted). Keep existing ids stable so the story reads as the same story, grown.
+4. Group cards into episodes (one goal pursued across sessions) and episodes into chapters (phases bounded by a goal shift or a long gap). Every episode goes in exactly one chapter.
+5. Pull pivots from card backtracks and from cross-session patterns the cards cannot see: a goal that silently disappeared, work redone in a later session, reverted commits, commits that never reached the default branch.
+6. Write `<work dir>/story.json`, then run `uv run scripts/check_evidence.py story --project <project>`. Fix every problem and re-run until it prints OK.
 
 Rules:
 - Follow the writing rules in `story-schema.md`. The headline, chapter titles, and lessons must make sense to someone who never saw the code.
